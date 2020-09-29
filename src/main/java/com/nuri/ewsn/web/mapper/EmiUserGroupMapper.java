@@ -1,12 +1,13 @@
 package com.nuri.ewsn.web.mapper;
 
-import com.nuri.ewsn.web.model.user.EmiGroupInfo;
 import com.nuri.ewsn.web.model.user.EmiUserGroup;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
+//@Repository
 @Mapper
 public interface EmiUserGroupMapper {
 
