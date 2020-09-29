@@ -7,7 +7,7 @@
 * @Date : 2020.09.28
 ************************************-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nuri.ewsn.web.mapper.EmiUserInfoDAO">
+<mapper namespace="com.nuri.ewsn.web.mapper.EmiUserInfoMapper">
 
     <resultMap type="java.util.Map" id="resultMap">
         <id property="user_seq" column="user_seq" javaType="Integer"/>

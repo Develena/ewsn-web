@@ -23,11 +23,11 @@
 
 	<mappers>
 
-		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiUserInfoMapper.xml" />
-		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiUserLoginMapper.xml" />
-		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiUserGroupMapper.xml" />
-		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiGroupInfoMapper.xml" />
-		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiCompInfoMapper.xml" />
+		<mapper resource="mapper/mysql/EmiUserInfoMapper.xml" />
+		<mapper resource="mapper/mysql/EmiUserLoginMapper.xml" />
+		<mapper resource="mapper/mysql/EmiUserGroupMapper.xml" />
+		<mapper resource="mapper/mysql/EmiGroupInfoMapper.xml" />
+		<mapper resource="mapper/mysql/EmiCompInfoMapper.xml" />
 	</mappers>
 
 </configuration>

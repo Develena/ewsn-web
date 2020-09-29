@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface EmiCompInfoDAO {
+public interface EmiCompInfoMapper {
 
     List<Map<String,Object>> selectList(EmiCompInfo param);
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface EmiGroupInfoDAO {
+public interface EmiGroupInfoMapper {
 
     List<Map<String,Object>> selectList(EmiGroupInfo param);
 

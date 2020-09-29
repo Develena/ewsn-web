@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface EmiUserGroupDAO {
+public interface EmiUserGroupMapper {
 
     List<Map<String,Object>> selectList(EmiUserGroup param);
 
