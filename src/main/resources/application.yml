@@ -23,8 +23,8 @@ server:
 mybatis:
   config-location: classpath:mapper/mysql/MapperConfig.xml
   type-aliases-package: com.nuri.ewsn.web.model
-  configuration:
-    map-underscore-to-camel-case: true
+#  configuration:
+#    map-underscore-to-camel-case: true
 
 ---
 spring:
