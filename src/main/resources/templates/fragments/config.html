@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="co" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <!-- Common resource Fragment -->
+    <head th:fragment="configFragment">
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <!-- JQuery -->
+        <script type="text/javascript" th:src="@{/lib/jquery/jquery-3.2.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/lib/jquery/jquery-migrate-3.0.1.min.js}"></script>
+
+        <!-- 브라우저 구버전 -->
+        <script type="text/javascript" th:src="@{/lib/html5shiv/html5shiv.min.js}"></script>
+        <script type="text/javascript" th:src="@{/lib/html5shiv/respond.min.js}"></script>
+
+        <!-- high chart -->
+        <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+        <!-- ag-grid -->
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/ag-grid/ag-grid.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/ag-grid/ag-theme-balham.css}" />
+        <script type="text/javascript" th:src="@{/lib/ag-grid/ag-grid-enterprise.js}"></script>
+
+        <!-- font awesome -->
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/fontawesome/all.css}" />
+        <script type="text/javascript" th:src="@{/lib/fontawesome/all.js}"></script>
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap/bootstrap.css}" />
+        <script type="text/javascript" th:src="@{/lib/bootstrap/bootstrap.js}"></script>
+
+        <!-- Body의 CSS 영역 -->
+        <th:block layout:fragment="css"></th:block>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/component.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style_table.css}" />
+
+        <title>NMS 모니터링 시스템</title>
+
+        <!-- Body의 script 영역 -->
+        <th:block layout:fragment="script"></th:block>
+
+
+        <!-- custom js -->
+        <script type="text/javascript" th:src="@{/js/stylejs/style.js}"></script>
+        <script type="text/javascript" th:src="@{/js/chartjs/main_chart.js}"></script>
+        <script type="text/javascript" th:src="@{/js/tablejs/main_table.js}"></script>
+
+</html>

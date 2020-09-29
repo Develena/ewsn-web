@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--***********************************
+* @Copyright : nuritelecom
+* @ProjectName : nuri-ewsn-web
+* @FileName : EmiCompInfoMapper.xml
+* @Author : hyunhee
+* @Date : 2020.09.28
+************************************-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nuri.ewsn.web.mapper.EmiCompInfoDAO">
+
+    <resultMap type="java.util.Map" id="resultMap">
+        <id property="comp_seq" column="comp_seq" javaType="Integer"/>
+        <result property="comp_name" column="comp_name" javaType="String" />
+        <result property="corp_reg_num" column="corp_reg_num" javaType="String" />
+        <result property="comp_reg_num" column="comp_reg_num" javaType="String" />
+        <result property="comp_yn" column="comp_yn" javaType="Integer" />
+        <result property="comp_manager" column="comp_manager" javaType="String" />
+        <result property="comp_type" column="comp_type" javaType="String" />
+        <result property="comp_sector" column="comp_sector" javaType="String" />
+        <result property="comp_cat" column="comp_cat" javaType="String" />
+        <result property="comp_zcode" column="comp_zcode" javaType="Integer" />
+        <result property="comp_addr1" column="comp_addr1" javaType="String" />
+        <result property="comp_addr2" column="comp_addr2" javaType="String" />
+        <result property="comp_addr3" column="comp_addr3" javaType="String" />
+        <result property="comp_phone" column="comp_phone" javaType="String" />
+        <result property="comp_email" column="comp_email" javaType="String" />
+        <result property="comp_fax" column="comp_fax" javaType="String" />
+        <result property="comp_id" column="comp_id" javaType="String" />
+        <result property="reg_dt" column="reg_dt" javaType="String" />
+        <result property="reg_user_id" column="reg_user_id" javaType="String" />
+        <result property="reg_user_ip" column="reg_user_ip" javaType="Integer" />
+    </resultMap>
+
+    <sql id="base_where_list">
+        <where>
+            <if test="compSeq != null" >
+                AND THIS.COMP_SEQ = #{compSeq}
+            </if>
+            <if test="compId != null" >
+                AND THIS.COMP_ID = #{compId}
+            </if>
+            <if test="compName != null" >
+                AND THIS.COMP_NAME like concat(#{compName},'%')
+            </if>
+            <if test="compName != null" >
+                AND THIS.COMP_NAME like concat(#{compName},'%')
+            </if>
+            <if test="sdate != null and edate != null " >
+                AND THIS.REG_DT between date_format(concat(#{sdate},'000000'), '%Y-%m-%d %H:%i:%s') AND date_format(concat(#{edate},'235959'), '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="searchfield != null and searchquery != null " >
+                AND ${searchfield} like concat(#{searchquery},'%')
+            </if>
+        </where>
+    </sql>
+
+    <sql id="order_by_list">
+        <foreach collection="orderByList" item="orderby" open="order by" index="index" separator=",">
+            ${orderby.sort} ${orderby.dir}
+        </foreach>
+    </sql>
+
+    <sql id="query_limit">
+        <if test="limit > 0 " >
+            LIMIT #{start}, #{limit}
+        </if>
+    </sql>
+    <select id="selectList" resultMap="resultMap" parameterType="EmiCompInfo">
+        SELECT
+            comp_seq
+            , comp_id
+            , comp_name
+            , corp_reg_num
+            , comp_reg_num
+            , comp_yn
+            , comp_manager
+            , comp_type
+            , comp_sector
+            , comp_cat
+            , comp_zcode
+            , comp_addr1
+            , comp_addr2
+            , comp_addr3
+            , comp_phone
+            , comp_email
+            , comp_fax
+            , DATE_FORMAT(reg_dt, '${prop.dt.s}') AS reg_dt
+            , reg_user_id
+            , INET_NTOA(reg_user_ip ) AS reg_user_ip
+        FROM emi_comp_info THIS
+        <include refid="base_where_list" />
+    </select>
+
+    <select id="selectCount" resultType="int" parameterType="EmiCompInfo">
+        SELECT
+            COUNT(*) CO
+        FROM
+            emi_comp_info   THIS
+        <include refid="base_where_list" />
+    </select>
+
+    <insert id="insert" parameterType="EmiCompInfo">
+        INSERT INTO
+            emi_comp_info (
+                          comp_id
+                          , comp_name
+                          , corp_reg_num
+                          , comp_reg_num
+                          , comp_yn
+                          , comp_manager
+                          , comp_type
+                          , comp_sector
+                          , comp_cat
+                          , comp_zcode
+                          , comp_addr1
+                          , comp_addr2
+                          , comp_addr3
+                          , comp_phone
+                          , comp_email
+                          , comp_fax
+                          , reg_dt
+                          , reg_user_id
+                          , reg_user_ip
+        )
+        VALUES (
+                #{compId}
+                , #{compName}
+                , #{corpRegNum}
+                , #{compRegNum}
+                , #{compYn}
+                , #{compManager}
+                , #{compType}
+                , #{compSector}
+                , #{compCat}
+                , #{compZcode}
+                , #{compAddr1}
+                , #{compAddr2}
+                , #{compAddr3}
+                , #{compPhone}
+                , #{compEmail}
+                , #{compFax}
+                , NOW()
+                , #{regUserId}
+                , INET_ATON(#{regUserIp})
+               )
+    </insert>
+
+
+    <update id="update" parameterType="EmiCompInfo">
+        UPDATE emi_comp_info SET
+            comp_id = #{compId}
+            , comp_name =  #{compName}
+            , corp_reg_num =  #{corpRegNum}
+            , comp_reg_num = #{compRegNum}
+            , comp_yn = #{compYn}
+            , comp_manager = #{compManager}
+            , comp_type = #{compType}
+            , comp_sector = #{compSector}
+            , comp_cat = #{compCat}
+            , comp_zcode = #{compZcode}
+            , comp_addr1 = #{compAddr1}
+            , comp_addr2 = #{compAddr2}
+            , comp_addr3 = #{compAddr3}
+            , comp_phone = #{compPhone}
+            , comp_email = #{compEmail}
+            , comp_fax = #{compFax}
+        WHERE comp_seq = #{compSeq}
+
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE
+        FROM
+            emi_comp_info
+        WHERE
+            comp_seq = #{compSeq}
+
+    </delete>
+
+</mapper>

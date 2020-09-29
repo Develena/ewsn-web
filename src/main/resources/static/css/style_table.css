@@ -1,0 +1,185 @@
+@charset "UTF-8";
+/*-------------------------------------------------------------------
+    파일정의 : 테이블 
+    
+	속성순서 : 레이아웃, 사이징, 박스모양, 글자모양, 문단모양, 기타모양
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------
+    @ag-grid table
+-------------------------------------------------------------------*/
+/* reset ag-grid */
+#Wrap .ag-header-icon,
+#Wrap .ag-header-cell-menu-button {
+    display: none;
+}
+#Wrap .ag-header-cell-label {
+    justify-content: center;
+    font-size: 16px;
+    line-height: 36px;
+    font-weight: 600;
+}
+#Wrap .ag-cell {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    line-height: 42px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+#Wrap .ag-status-bar {
+    border: 0;
+}
+#Wrap .grid-cell-centered {
+    text-align: center;
+}
+#Wrap .grid-cell-wrap-text {
+    white-space: normal;
+    line-height: 1.3;
+}
+#Wrap .ag-body-viewport {
+    overflow-y: auto;
+}
+
+/* 금일 이벤트 현황 Total 텍스트 */
+#Wrap .grid-cell-total-text,
+#Wrap .grid-cell-total-text + div {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* 검색결과 텍스트 */
+#Wrap .search_result_wrapper .ag-header-cell-label,
+#Wrap .search_result_wrapper .ag-cell {
+    font-size: 14px;
+}
+
+/*원형 컬러칩 공통*/
+.grid-cell-circle:before {
+    content: '● ';
+    font-size: 25px;
+    line-height: 42px;
+}
+
+/* 배경 컬러칩 공통  */
+.grid-cell-bg {
+    font-weight: 700;
+}
+
+/* 원형 배경 텍스트 공통 */
+.grid-cell-bg-circle {
+    position: relative;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+.grid-cell-bg-circle:before {
+    display: inline-block;
+    min-width: 24px;
+    padding: 4px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+    text-indent: 0;
+}
+
+/* 단말 알람 현황 컬러칩 */
+
+/* 정전 */
+.grid-cell-circle-blackout:before {
+    color: #34c759;
+}
+/* 메모리 경고 */
+.grid-cell-circle-mem-warning:before {
+    color: #ff9800;
+}
+/* 전계강도 초과 */
+.grid-cell-circle-excess:before {
+    color: #2c7be5;
+}
+/* 기타 */
+.grid-cell-circle-etc:before {
+    color: #6f42c1;
+}
+
+/* 금일 이벤트 현황 컬러칩 */
+
+/* Info */
+.grid-cell-circle-info:before {
+    color: #34c759;
+}
+/* Warn */
+.grid-cell-circle-warn:before {
+    color: #ffd900;
+}
+/* Error */
+.grid-cell-circle-error:before {
+    color: #ff9500;
+}
+/* Critical */
+.grid-cell-circle-critical:before {
+    color: #ff3b30;
+}
+
+/* 실시간 이벤트 모니터링 컬러칩 */
+
+/* Info */
+.grid-cell-bg-info {
+    background: rgba(52, 199, 89, 0.1);
+    color: #34c759;
+}
+/* Warn */
+.grid-cell-bg-warn {
+    background: rgba(255, 217, 0, 0.1);
+    color: #ffd900;
+}
+/* Error */
+.grid-cell-bg-error {
+    background: rgba(255, 149, 0, 0.1);
+    color: #ff9500;
+}
+/* Critical */
+.grid-cell-bg-critical {
+    background: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+}
+
+/* 검색결과 컬러칩 */
+
+/* 게이트웨이 연결 */
+.grid-cell-bg-circle-gateway-connected::before {
+    border-radius: 5px;
+    content: 'G';
+    background: #2c7be5;
+}
+/* 게이트웨이 미연결 */
+.grid-cell-bg-circle-gateway-unconnected::before {
+    border-radius: 5px;
+    content: 'G';
+    background: #ff9800;
+}
+/* 게이트웨이 미등록 */
+.grid-cell-bg-circle-gateway-unregistered::before {
+    border-radius: 5px;
+    content: 'G';
+    background: #8e8e93;
+}
+/* 디바이스 연결 */
+.grid-cell-bg-device-connected::before {
+    content: 'D';
+    background: #4caf50;
+}
+/* 디바이스 미연결 */
+.grid-cell-bg-device-unconnected::before {
+    content: 'D';
+    background: #ff9800;
+}
+/* 디바이스 미등록 */
+.grid-cell-bg-device-unregistered::before {
+    content: 'D';
+    background: #8e8e93;
+}

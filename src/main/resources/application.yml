@@ -1,0 +1,69 @@
+spring:
+  profiles:
+    active: local
+
+ # thymeleaf
+  thymeleaf:
+    check-template-location: true #??
+    suffix: .html
+    mode: HTML5
+    template-resolver-order: 0
+
+  # MariaDB
+  datasource:
+    username: ewsnnms
+    password: aimiramm
+    driver-class-name: org.mariadb.jdbc.Driver
+
+server:
+  servlet:
+    context-path: /ewsn-web
+
+## MyBatis
+mybatis:
+  config-location: classpath:mapper/mysql/MapperConfig.xml
+  type-aliases-package: com.nuri.ewsn.web.model
+  configuration:
+    map-underscore-to-camel-case: true
+
+---
+spring:
+  profiles: local
+
+  # thymeleaf
+  spring:
+    # Templates reloading during development
+    thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+    # Static resources reloading during development
+    resources:
+    static-locations: file:src/main/resources/static/
+
+  # MariaDB
+  datasource:
+    url: "jdbc:mariadb://140.238.7.127:4006/ewsnnmsdb?useUnicode=truㅌe&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul"
+
+---
+spring:
+  profiles: dev
+
+  #Thymeleaf
+  thymeleaf:
+    prefix: classpath:templates/
+    cache: true
+  resources:
+    static-locations: classpath:static/
+
+
+
+---
+spring:
+  profiles: pub
+
+  #Thymeleaf
+  thymeleaf:
+    prefix: classpath:templates/
+    cache: true
+  resources:
+    static-locations: classpath:static/

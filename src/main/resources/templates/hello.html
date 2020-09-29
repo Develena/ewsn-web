@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!-- JQuery -->
+    <script type="text/javascript" th:src="@{/lib/jquery/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/jquery/jquery-migrate-3.0.1.min.js}"></script>
+
+    <!-- 브라우저 구버전 -->
+    <script type="text/javascript" th:src="@{/lib/html5shiv/html5shiv.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/html5shiv/respond.min.js}"></script>
+
+    <!-- high chart -->
+    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+    <!-- ag-grid -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/ag-grid/ag-grid.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/ag-grid/ag-theme-balham.css}"/>
+    <script type="text/javascript" th:src="@{/lib/ag-grid/ag-grid-enterprise.js}"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/fontawesome/all.css}"/>
+    <script type="text/javascript" th:src="@{/lib/fontawesome/all.js}"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap/bootstrap.css}"/>
+    <script type="text/javascript" th:src="@{/lib/bootstrap/bootstrap.js}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/component.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style_table.css}"/>
+
+    <title>NMS 모니터링 시스템</title>
+
+</head>
+<body>
+<div id="Wrap" class="ewsn_nms main">
+    <!-- headerWrap -->
+    <div id="headerWrap">
+        <header>
+            <h1 class="logo"><img th:src="@{/images/common/logo.png}" alt="KEPCO 전력연구원 로고"/></h1>
+
+            <!-- gnb -->
+            <nav class="gnb">
+                <ul class="gnb_list">
+                    <li class="gnb_list_item active"><a th:href="@{/hello}">메인</a></li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">NMS 모니터링</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a th:href="@{/monitoring/devices}">단말 현황</a></li>
+                            <li><a th:href="@{/monitoring/location}">NMS 장치 현황</a></li>
+                            <li><a th:href="@{/monitoring/communication}">NMS 통신 현황</a></li>
+                            <li><a th:href="@{/monitoring/event}">이벤트 모니터링</a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">장치 관리</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a th:href="@{/devices/info}">단말 정보</a></li>
+                            <li><a th:href="@{/devices/resource}">리소스 정보</a></li>
+                            <li><a th:href="@{/devices/authentication}">단말 인가 관리</a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">공지사항</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a th:href="@{/notice}">공지사항</a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">시스템관리</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a th:href="@{/system/vendor}">제조사 정보 관리</a></li>
+                            <li><a th:href="@{/system/code}">코드 관리</a></li>
+                            <li><a th:href="@{/system/user}">사용자 관리</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- gnb end -->
+
+            <div sec:authorize="isAuthenticated()" class="log_info_wrapper">
+                <!--------------------------------------------
+                  상태 : 로그인
+                  $('.log_info').addClass('logged_in')
+
+                  상태 : 로그아웃
+                  $('.log_info').addClass('logged_out')
+              -------------------------------------------->
+                <p class="log_info logged_in">
+                    <a th:href="@{/logout}" class="log_in_out_link log_out_link">
+                        로그아웃
+                        <i class="fas fa-sign-out-alt" style="font-size: 12px; margin: 1px 0"></i>
+                    </a>
+                </p>
+                <p class="greeting">
+                    <span style="color: white" sec:authentication="name"></span>
+                    <span style="color: white" sec:authorize="hasRole('ROLE_SUPER')">(최고관리자)</span>
+                    <span style="color: white" sec:authorize="hasRole('ROLE_ADMIN')">(관리자)</span>
+                    님 반갑습니다!
+
+                </p>
+
+              <!--  <span style="display: block" sec:authentication="name"></span><p class="greeting">님 반갑습니다!</p>-->
+                <p sec:authorize="hasRole('ROLE_SUPER')" class="greeting">최고관리자님 반갑습니다!</p>
+
+            </div>
+        </header>
+    </div>
+    </header>
+    <!-- headerWrap end -->
+
+    <!-- contentWrap -->
+    <div id="contentWrap">
+        <section>
+            <div class="title_wrapper">
+                <div class="title_left">
+                    <h1 class="title">[경기 본부] 현황판</h1>
+                </div>
+                <div class="form_row select_box_wrapper">
+                    <span class="select_box_title">본부</span>
+
+                    <div class="select_box_inner">
+                        <select class="form_control select_btn select_btn_single">
+                            <option selected>경기 본부</option>
+                            <option>경기 본부</option>
+                            <option>경기 본부</option>
+                            <option>경기 본부</option>
+                            <option>경기 본부</option>
+                            <option>경기 본부</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_inner">
+                <!-- left_section -->
+                <div class="left_section">
+                    <!-- 단말 등록 현황 -->
+                    <div class="box_area">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">단말 등록 현황</h2>
+                                <a href="../nms_monitoring/terminal_status.html" class="outer_link">단말 현황 ></a>
+                            </div>
+                            <div class="box_area_body col_2">
+                                <div class="table_wrapper">
+                                    <div id="terminalRegisTable" style="width: 100%; max-height: 250px"
+                                         class="ag-theme-balham"></div>
+                                    <p class="base_date">기준일 : 2020.09.01</p>
+                                </div>
+                                <div class="graph_wrapper">
+                                    <div id="terminalRegisGraph" style="width: 100%; height: 250px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 단말 등록 현황 end -->
+
+                    <!-- 단말 알람 현황 -->
+                    <div class="box_area">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">단말 알람 현황</h2>
+                            </div>
+                            <div class="box_area_body col_2">
+                                <div class="table_wrapper">
+                                    <div id="terminalAlarmTable" style="width: 100%; max-height: 250px"
+                                         class="ag-theme-balham"></div>
+                                    <p class="base_date">기준일 : 2020.09.01</p>
+                                </div>
+                                <div class="graph_wrapper">
+                                    <div id="terminalAlarmGraph" style="width: 100%; height: 250px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 단말 알람 현황 end -->
+
+                    <!-- 금일 이벤트 현황 -->
+                    <div class="box_area box_area_sm">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">금일 이벤트 현황</h2>
+                            </div>
+                            <div class="box_area_body col_1">
+                                <div class="graph_wrapper">
+                                    <div id="todayEventGraph" style="width: 100%; height: 94px"></div>
+                                </div>
+                                <div class="table_wrapper">
+                                    <div id="todayEventTable" style="width: 100%" class="ag-theme-balham"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 금일 이벤트 현황 end -->
+                </div>
+                <!-- left_section end -->
+
+                <!-- middle_section -->
+                <div class="middle_section">
+                    <!-- 수신감도(RSSI) 현황 -->
+                    <div class="box_area">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">수신감도(RSSI) 현황</h2>
+
+                                <p class="base_date">기준일 : 2020.09.01</p>
+
+                                <div class="form_row select_box_wrapper">
+                                    <div class="select_box_inner">
+                                        <select class="form_control select_btn select_btn_single">
+                                            <option selected>게이트웨이(상향)</option>
+                                            <option>게이트웨이(하향)</option>
+                                            <option>디바이스(상향)</option>
+                                            <option>디바이스(하향)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box_area_body col_1">
+                                <div class="graph_wrapper">
+                                    <div id="rssiGraph" style="width: 100%; height: 250px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 수신감도(RSSI) 현황 end -->
+
+                    <!-- 데이터 송수신 현황 -->
+                    <div class="box_area">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">데이터 송수신 현황</h2>
+
+                                <p class="base_date">기준일 : 2020.09.01</p>
+
+                                <div class="form_row select_box_wrapper">
+                                    <div class="select_box_inner">
+                                        <select class="form_control select_btn select_btn_single">
+                                            <option selected>게이트웨이(상향)</option>
+                                            <option>게이트웨이(하향)</option>
+                                            <option>디바이스(상향)</option>
+                                            <option>디바이스(하향)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box_area_body col_1">
+                                <div class="graph_wrapper">
+                                    <div id="dataSendReceiveGraph" style="width: 100%; height: 250px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 데이터 송수신 현황 end -->
+
+                    <!-- 실시간 이벤트 모니터링 -->
+                    <div class="box_area box_area_sm">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">실시간 이벤트 모니터링</h2>
+                                <a href="../nms_monitoring/event_monitoring.html" class="outer_link">이벤트 이력 보기 ></a>
+                            </div>
+                            <div class="box_area_body col_1">
+                                <div class="table_wrapper">
+                                    <div id="realTimeEventTable" style="width: 100%" class="ag-theme-balham"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 실시간 이벤트 모니터링 end -->
+                </div>
+                <!-- middle_section end -->
+
+                <!-- right_section -->
+                <div class="right_section">
+                    <!-- 현재시간 -->
+                    <div class="box_area box_area_xs">
+                        <div class="box_area_inner current_time">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">현재 시간</h2>
+                            </div>
+                            <div class="box_area_body col_1">
+                                <p id="currentDate" class="date"></p>
+                                <p id="currentTime" class="time"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 현재시간 end -->
+
+                    <!-- 금일 알람 TOP 5 -->
+                    <div class="box_area box_area_l">
+                        <div class="box_area_inner">
+                            <div class="box_area_header">
+                                <h2 class="sub_title">금일 알람 TOP 5</h2>
+                            </div>
+                            <div class="box_area_body col_1">
+                                <div class="rank_wrapper">
+                                    <ol class="rank_list">
+                                        <li>
+                                            <span class="rank">1</span>
+                                            <span class="serial_number">GW200011</span>
+                                            <span class="alarm_count">25</span>
+                                        </li>
+                                        <li>
+                                            <span class="rank">2</span>
+                                            <span class="serial_number">DEV200011</span>
+                                            <span class="alarm_count">15</span>
+                                        </li>
+                                        <li>
+                                            <span class="rank">3</span>
+                                            <span class="serial_number">DEV200012</span>
+                                            <span class="alarm_count">14</span>
+                                        </li>
+                                        <li>
+                                            <span class="rank">4</span>
+                                            <span class="serial_number">DEV200013</span>
+                                            <span class="alarm_count">5</span>
+                                        </li>
+                                        <li>
+                                            <span class="rank">5</span>
+                                            <span class="serial_number">DEV200014</span>
+                                            <span class="alarm_count">4</span>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="map_wrapper">
+                                    <div id="map" style="width: 100%; height: 210px; overflow: hidden">
+                                        <img th:src="@{/images/main/map_sample.jpg}" alt="임시 지도"
+                                             style="width: 100%; height: 100%"/>
+                                    </div>
+                                </div>
+                                <div class="terminal_info_wrapper">
+                                    <div class="terminal_info_inner">
+                                        <ul class="terminal_info_list">
+                                            <li>
+                                                <dl>
+                                                    <dt>단말 번호 :</dt>
+                                                    <dd>GW200011</dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>단말 구분 :</dt>
+                                                    <dd>게이트웨이</dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>통신 상태 :</dt>
+                                                    <dd>미등록</dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>RSSI :</dt>
+                                                    <dd>상향 -70dBm, 하향 -95dBm</dd>
+                                                </dl>
+                                            </li>
+                                            <li>
+                                                <dl>
+                                                    <dt>최종 통신일자 :</dt>
+                                                    <dd>2020-09-01 10:10:25</dd>
+                                                </dl>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 금일 알람 TOP 5 end -->
+                </div>
+                <!-- right_section end -->
+            </div>
+        </section>
+    </div>
+    <!-- contentWrap end -->
+</div>
+
+<!-- custom js -->
+<script type="text/javascript" th:src="@{/js/stylejs/style.js}"></script>
+<script type="text/javascript" th:src="@{/js/chartjs/main_chart.js}"></script>
+<script type="text/javascript" th:src="@{/js/tablejs/main_table.js}"></script>
+</body>
+</html>

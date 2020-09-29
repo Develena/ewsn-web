@@ -1,0 +1,423 @@
+@charset "UTF-8";
+/*-------------------------------------------------------------------
+    파일정의 : 스타일 
+    
+	속성순서 : 레이아웃, 사이징, 박스모양, 글자모양, 문단모양, 기타모양
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------
+    @main layout
+-------------------------------------------------------------------*/
+.main .left_section {
+    flex: 0 0 33%;
+    max-width: 33%;
+}
+.main .middle_section {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+.main .right_section {
+    flex: 0 0 22%;
+    max-width: 22%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 메인 금일 알람 top5 box */
+.main .right_section .box_area_l {
+    flex: 1 1 auto;
+}
+.main .right_section .box_area_l .box_area_inner {
+    flex: 1 1 auto;
+    height: 100%;
+}
+
+/*-------------------------------------------------------------------
+    @sub layout
+-------------------------------------------------------------------*/
+/* left: search, right: result - nms모니터링>단말현황*/
+.lsearch_rresult .top_section,
+.lsearch_rresult .bottom_section {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+.lsearch_rresult .box_area_inner {
+    height: 100%;
+}
+.lsearch_rresult .left_section {
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+.lsearch_rresult .right_section {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+/* left: result, right: search - nsm모니터링>NMS 통신 현황 */
+.lresult_rsearch .top_section,
+.lresult_rsearch .bottom_section {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+.lresult_rsearch .left_section {
+    flex: 0 0 75%;
+    max-width: 75%;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.lresult_rsearch .left_section .box_area,
+.lresult_rsearch .left_section .box_area_inner,
+.lresult_rsearch .left_section .box_area_body {
+    flex: 1 1 auto;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+}
+.lresult_rsearch .right_section {
+    flex: 0 0 25%;
+    max-width: 25%;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.lresult_rsearch .right_section .box_area,
+.lresult_rsearch .right_section .box_area_inner,
+.lresult_rsearch .right_section .box_area_body {
+    flex: 1 1 auto;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+}
+.lresult_rsearch .right_section .box_area.search_form_wrapper {
+    flex: 0;
+}
+
+/* 
+top: search, bottom: result 
+    - nms모니터링>NMS 장치 현황 
+    - nms모니터링>이벤트 모니터링 
+*/
+.tsearch_bresult .content_inner {
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+.tsearch_bresult .top_section {
+    flex: 0 1 auto;
+}
+.tsearch_bresult .bottom_section {
+    flex: 1 1 auto;
+}
+.tsearch_bresult .bottom_section .box_area,
+.tsearch_bresult .bottom_section .box_area_inner {
+    height: 100%;
+}
+.tsearch_bresult .box_area_header .btn_wrapper {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/*-------------------------------------------------------------------
+    @Login
+-------------------------------------------------------------------*/
+#Wrap.login {
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+}
+.login_wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.65)) #034ea2;
+}
+.login_inner {
+    width: 460px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+/* login_header */
+.login_header {
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0 0 30px 0;
+}
+.login_title_wrapper .login_title {
+    margin: 0 0 7px 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+.login_title_wrapper .login_sub_title {
+    font-size: 24px;
+}
+.login_header .lock_icon {
+    font-size: 55px;
+}
+
+/* login_body */
+.login_body .form_control {
+    background: #fff;
+}
+.custom-control-label {
+    font-size: 14px;
+    padding: 0.25rem 0;
+}
+.custom-control-label::before {
+    background-color: #f0f0f0;
+}
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #red;
+}
+.login_body .btn {
+    width: 100%;
+}
+
+/*-------------------------------------------------------------------
+    @current time
+-------------------------------------------------------------------*/
+.main .current_time {
+    color: rgba(0, 0, 0, 0.95);
+}
+.main .current_time .box_area_body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    align-items: center;
+    letter-spacing: -0.075em;
+}
+.main .current_time .date {
+    margin: 0 0 7px 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+.main .current_time .time {
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+}
+
+/*-------------------------------------------------------------------
+    @main 금일알람 top5
+-------------------------------------------------------------------*/
+.rank_wrapper,
+.map_wrapper,
+.terminal_info_wrapper {
+    margin: 10px 0;
+}
+
+/* 순위 */
+.rank_list li {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 4px 0;
+}
+.rank_list li:not(:last-child) {
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.rank_list .rank {
+    display: inline-block;
+    min-width: 26px;
+    padding: 5px;
+    border-radius: 50%;
+    background: #007aff;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    vertical-align: baseline;
+}
+.rank_list .serial_number {
+    flex: 1 1 auto;
+    text-indent: 20px;
+}
+.rank_list .alarm_count {
+    font-weight: 500;
+}
+.rank_list .alarm_count:after {
+    content: '건';
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* 단말 정보 */
+.terminal_info_inner {
+    padding: 30px 20px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+}
+.terminal_info_list li {
+    font-size: 18px;
+}
+.terminal_info_list li:not(:last-child) {
+    margin: 0 0 14px 0;
+}
+.terminal_info_list li:first-child {
+    font-weight: 500;
+    color: #007aff;
+}
+.terminal_info_list li:last-child dt {
+    font-weight: 600;
+}
+.terminal_info_inner dl {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    align-items: center;
+}
+.terminal_info_inner dt {
+    margin: 0 4px 0 0;
+}
+
+/*-------------------------------------------------------------------
+    @sub 검색 결과 테이블
+-------------------------------------------------------------------*/
+.total_result_count {
+    font-size: 16px;
+}
+.legend_list {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    align-items: center;
+}
+.legend_item {
+    font-size: 14px;
+}
+.legend_item + .legend_item {
+    margin-left: 14px;
+}
+.legend_item span {
+    display: inline-block;
+    min-width: 23px;
+    margin-right: 7px;
+    padding: 4px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    vertical-align: baseline;
+}
+.legend_item_gateway span {
+    border-radius: 5px;
+    background: #2c7be5;
+}
+.legend_item_device_connected span {
+    background: #4caf50;
+}
+.legend_item_device_disconnected span {
+    background: #ff9800;
+}
+
+.no_data_wrapper {
+    margin: 10% 0 auto 0;
+    text-align: center;
+}
+.alert_icon_container {
+    font-size: 100px;
+    color: #f2f2f6;
+}
+.alert_txt {
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* 검색결과 있을때 or 없을때 */
+.toggle_search_result_wrapper .no_data_wrapper,
+.toggle_search_result_wrapper .table_wrapper {
+    display: none;
+}
+
+.toggle_search_result_wrapper.has_no_data .no_data_wrapper {
+    display: block;
+}
+
+.toggle_search_result_wrapper.has_data .table_wrapper {
+    display: block;
+}
+
+/*-------------------------------------------------------------------
+    @sub 검색 결과 카운트 리스트
+-------------------------------------------------------------------*/
+.result_count_wrapper {
+}
+.result_count_wrapper dl {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    align-items: center;
+}
+.result_count_wrapper dt,
+.result_count_wrapper dd {
+    font-size: 16px;
+}
+.result_count_wrapper dt {
+    padding: 5px 15px;
+    position: relative;
+}
+.result_count_wrapper dd {
+    padding: 5px 20px;
+}
+
+.result_count_wrapper dt:before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 26px;
+    background: #8e8e93;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 검색결과 카운트 컬러칩 */
+.result_count_wrapper .info:before {
+    background: #34c759;
+}
+.result_count_wrapper .warn:before {
+    background: #ffd900;
+}
+.result_count_wrapper .error:before {
+    background: #ff9500;
+}
+.result_count_wrapper .critical:before {
+    background: #ff3b30;
+}
+
+.result_count_wrapper .info + dd {
+    background: rgba(52, 199, 89, 0.1);
+}
+.result_count_wrapper .warn + dd {
+    background: rgba(255, 217, 0, 0.1);
+}
+.result_count_wrapper .error + dd {
+    background: rgba(255, 149, 0, 0.1);
+}
+.result_count_wrapper .critical + dd {
+    background: rgba(255, 59, 48, 0.1);
+}

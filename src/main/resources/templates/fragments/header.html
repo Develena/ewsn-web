@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!--
+<div sec:authorize="isAuthenticated()">
+  This content is only shown to authenticated users.
+</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+  This content is only shown to administrators.
+</div>
+<div sec:authorize="hasRole('ROLE_USER')">
+  This content is only shown to users.
+</div>
+
+Logged user: <span sec:authentication="name">Bob</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+-->
+<header th:fragment="headerFragment">
+    <!-- headerWrap -->
+    <div id="headerWrap">
+        <header>
+            <h1 class="logo"><img th:src="@{/images/common/logo.png}" alt="KEPCO 전력연구원 로고"/></h1>
+
+            <!-- gnb -->
+            <nav class="gnb">
+                <ul class="gnb_list">
+                    <li class="gnb_list_item active"><a href="../main/main.html">메인</a></li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">NMS 모니터링</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a href="../nms_monitoring/terminal_status.html">단말 현황</a></li>
+                            <li><a href="../nms_monitoring/nms_network_status.html">NMS 통신 현황</a></li>
+                            <li><a href="../nms_monitoring/nms_device_status.html">NMS 장치 현황</a></li>
+                            <li><a href="../nms_monitoring/event_monitoring.html">이벤트 모니터링</a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">장치 관리</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a href="">단말 현황</a></li>
+                            <li><a href="">리소스 정보</a></li>
+                            <li><a href="">단말 인가 관리</a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">공지사항</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a href="">공지사항</a></li>
+                        </ul>
+                    </li>
+                    <li class="gnb_list_item has_sub_nav">
+                        <a href="#">시스템관리</a>
+                        <ul class="sub_nav fade_in">
+                            <li><a href="">제조사 정보 관리</a></li>
+                            <li><a href="">코드 관리</a></li>
+                            <li><a href="">사용자 관리</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <!-- gnb end -->
+
+            <div class="log_info_wrapper">
+                <!--------------------------------------------
+                    상태 : 로그인
+                    $('.log_info').addClass('logged_in')
+
+                    상태 : 로그아웃
+                    $('.log_info').addClass('logged_out')
+                -------------------------------------------->
+                <p class="log_info logged_out">
+                    <a href="#" class="log_in_out_link log_out_link">
+                        로그아웃
+                        <i class="fas fa-sign-out-alt" style="font-size: 12px; margin: 1px 0"></i>
+                    </a>
+                    <a href="../../routes/login/login.html" class="log_in_out_link log_in_link">
+                        로그인
+                        <i class="fas fa-sign-in-alt" style="font-size: 12px; margin: 1px 0"></i>
+                    </a>
+                </p>
+                <p class="greeting">관리자님 반갑습니다!</p>
+            </div>
+        </header>
+    </div>
+</header>
+<!-- headerWrap end -->
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--***********************************
+* @Copyright : nuritelecom
+* @ProjectName : nuri-ewsn-web
+* @FileName : EmiUserInfoMapper.xml
+* @Author : hyunhee
+* @Date : 2020.09.28
+************************************-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nuri.ewsn.web.mapper.EmiUserInfoDAO">
+
+    <resultMap type="java.util.Map" id="resultMap">
+        <id property="user_seq" column="user_seq" javaType="Integer"/>
+        <result property="comp_seq" column="comp_seq" javaType="Integer" />
+        <result property="user_id" column="user_id" javaType="String" />
+        <result property="user_name" column="user_name" javaType="String"/>
+        <result property="user_pass" column="user_pass" javaType="String"  />
+        <result property="user_yn" column="user_yn" javaType="Integer" />
+        <result property="dept_name" column="dept_name" javaType="String"/>
+        <result property="user_phone" column="user_phone" javaType="String"/>
+        <result property="user_email" column="user_email" javaType="String"/>
+        <result property="reg_dt" column="reg_dt" javaType="String" />
+        <result property="reg_user_ip" column="reg_user_ip" javaType="String"/>
+        <result property="reg_user_id" column="reg_user_id" javaType="String"/>
+    </resultMap>
+
+    <sql id="base_where_list">
+        <where>
+            <if test="userSeq != null" >
+                AND THIS.USER_SEQ = #{userSeq}
+            </if>
+            <if test="userId != null" >
+                AND THIS.USER_ID = #{userId}
+            </if>
+            <if test="userName != null" >
+                AND THIS.USER_NAME like concat(#{userName},'%')
+            </if>
+            <if test="deptName != null" >
+                AND THIS.DEPT_NAME like concat(#{deptName},'%')
+            </if>
+            <if test="sdate != null and edate != null " >
+                AND THIS.REG_DT between date_format(concat(#{sdate},'000000'), '%Y-%m-%d %H:%i:%s') AND date_format(concat(#{edate},'235959'), '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="searchfield != null and searchquery != null " >
+                AND ${searchfield} like concat(#{searchquery},'%')
+            </if>
+        </where>
+    </sql>
+
+    <sql id="order_by_list">
+        <foreach collection="orderByList" item="orderby" open="order by" index="index" separator=",">
+            ${orderby.sort} ${orderby.dir}
+        </foreach>
+    </sql>
+
+    <sql id="query_limit">
+        <if test="limit > 0 " >
+            LIMIT #{start}, #{limit}
+        </if>
+    </sql>
+
+    <select id="selectList" resultMap="resultMap" parameterType="EmiUserInfo">
+        SELECT
+            USER_SEQ
+            , COMP_SEQ
+            , USER_ID
+            , USER_NAME
+            , USER_PASS
+            , USER_YN
+            , DEPT_NAME
+            , USER_PHONE
+            , USER_EMAIL
+            , DATE_FORMAT(REG_DT, '${prop.dt.s}') AS REG_DT
+            , REG_USER_ID
+            , INET_NTOA(REG_USER_IP) AS REG_USER_IP
+        FROM emi_user_info THIS
+        <include refid="base_where_list" />
+    </select>
+
+    <select id="selectCount" resultType="int" parameterType="EmiUserInfo">
+        SELECT
+            COUNT(*) CO
+        FROM
+            emi_user_info THIS
+        <include refid="base_where_list" />
+    </select>
+
+    <insert id="insert" parameterType="EmiUserInfo">
+        INSERT INTO
+            emi_user_info (
+                COMP_SEQ
+                , USER_ID
+                , USER_NAME
+                , USER_PASS
+                , USER_YN
+                , DEPT_NAME
+                , USER_PHONE
+                , USER_EMAIL
+                , REG_DT
+                , REG_USER_ID
+                , REG_USER_IP
+            )
+        VALUES (
+            #{compSeq}
+            , #{userId}
+            , #{userName}
+            , #{userPass}
+            , #{userYn}
+            , #{deptName}
+            , #{userPhone}
+            , #{userEmail}
+            , NOW()
+            , #{regUserId}
+            , INET_ATON(#{regUserIp})
+        )
+    </insert>
+
+
+    <update id="update" parameterType="EmiUserInfo">
+        UPDATE emi_user_info SET
+             COMP_SEQ = #{compSeq}
+                , USER_ID = #{userId}
+                , USER_NAME = #{userName}
+                , USER_PASS = #{userPass}
+                , USER_YN = #{userYn}
+                , DEPT_NAME = #{deptName}
+                , USER_PHONE = #{userPhone}
+                , USER_EMAIL = #{userEmail}
+        WHERE USER_SEQ = #{userSeq}
+
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE
+        FROM
+            emi_user_info
+        WHERE
+            USER_SEQ = #{userSeq}
+
+    </delete>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<properties>
+		<property name="prop.enckey" value="EWSNENC"/>
+		<property name="prop.dt.s" value="%Y-%m-%d %H:%i:%s"/>
+		<property name="prop.dt.m" value="%Y-%m-%d %H:%i"/>
+		<property name="prop.date" value="%Y-%m-%d"/>
+		<property name="prop.md" value="%m-%d"/>
+		<property name="prop.time" value="%H:%i:%s"/>
+	</properties>
+
+	<typeAliases>
+		<!-- 사용자 -->
+		<typeAlias alias="EmiUserInfo" type="com.nuri.ewsn.web.model.user.EmiUserInfo"/>
+		<typeAlias alias="EmiUserLogin" type="com.nuri.ewsn.web.model.user.EmiUserLogin"/>
+		<typeAlias alias="EmiUserGroup" type="com.nuri.ewsn.web.model.user.EmiUserGroup"/>
+		<typeAlias alias="EmiGroupInfo" type="com.nuri.ewsn.web.model.user.EmiGroupInfo"/>
+		<typeAlias alias="EmiCompInfo" type="com.nuri.ewsn.web.model.user.EmiCompInfo"/>
+
+  	</typeAliases>
+
+	<mappers>
+
+		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiUserInfoMapper.xml" />
+		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiUserLoginMapper.xml" />
+		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiUserGroupMapper.xml" />
+		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiGroupInfoMapper.xml" />
+		<mapper resource="com/nuri/ewsn/web/mapper/mysql/EmiCompInfoMapper.xml" />
+	</mappers>
+
+</configuration>

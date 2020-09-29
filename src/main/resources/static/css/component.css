@@ -1,0 +1,530 @@
+@charset "UTF-8";
+/*-------------------------------------------------------------------
+    파일정의 : 컴포넌트 
+    
+	속성순서 : 레이아웃, 사이징, 박스모양, 글자모양, 문단모양, 기타모양
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------
+    @Breadcrumb Element
+-------------------------------------------------------------------*/
+.breadcrumb_wrapper {
+    padding: 0 0 7px 0;
+}
+.breadcrumb_list li {
+    display: inline;
+    font-size: 12px;
+}
+.breadcrumb_list li + li:before {
+    padding: 0 8px;
+    content: '>';
+}
+.breadcrumb_list li:last-child {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/*-------------------------------------------------------------------
+    @table
+-------------------------------------------------------------------*/
+.table_wrapper {
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+.table_wrapper table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.table_wrapper caption {
+    margin: 0 0 10px 0;
+    text-align: center;
+    caption-side: top;
+}
+.table_wrapper td {
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    font-size: 14px;
+    vertical-align: middle;
+}
+.table_wrapper .thead {
+    background: rgba(0, 0, 0, 0.05);
+    font-weight: 700;
+}
+
+/*-------------------------------------------------------------------
+    @Form Control Element
+-------------------------------------------------------------------*/
+.form_wrapper {
+    width: 100%;
+}
+.form_control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 10px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form_control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form_row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.form_row + .form_row {
+    margin: 10px 0 0 0;
+}
+
+.form_label {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.95);
+}
+
+.form_row.col_2 .form_label {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.form_row.col_2 .form_inner {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+    width: 100%;
+}
+
+.form_inner.col_2 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.form_inner.col_2 .col2-1 {
+    flex: 0 0 35%;
+    max-width: 35%;
+    width: 100%;
+}
+.form_inner.col_2 .col2-2 {
+    flex: 0 0 62%;
+    max-width: 62%;
+    width: 100%;
+}
+
+/* form horizontal */
+.form_wrapper_row {
+    display: -ms-flexbox;
+    display: flex;
+}
+.form_wrapper_row .form_row {
+    flex: 0 1 auto;
+    flex-direction: column;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0 10px;
+}
+.form_wrapper_row .btn_wrapper {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 2px;
+}
+
+.form_wrapper_row .form_label {
+    padding: 7px;
+}
+
+.form_row_radio_wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+}
+.form_row_radio_wrapper .form_label {
+    cursor: pointer;
+}
+
+/* tab header form controls */
+.tab_panel_header .form_control {
+    background: #fff;
+}
+
+/*-------------------------------------------------------------------
+    @Select Box Element
+-------------------------------------------------------------------*/
+.select_box_title {
+    margin: 0 20px 0 0;
+    font-size: 16px;
+}
+.select_box_inner {
+    position: relative;
+}
+.select_box_inner:before {
+    content: '';
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 0;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.select_btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.select_btn::-ms-expand {
+    display: none;
+}
+
+.select_btn.select_btn_single {
+    padding: 10px 150px 10px 10px;
+}
+.box_area_header select.select_btn {
+    padding: 5px 70px 5px 5px;
+    font-size: 12px;
+}
+
+/* date picker 옆 selectbox */
+.date_wrapper .time_selectbox {
+    width: auto;
+    padding: 10px 40px 10px 10px;
+}
+
+/* tab body top selectbox */
+.tab_panel_body .form_row.select_box_wrapper {
+    justify-content: flex-end;
+}
+
+/*-------------------------------------------------------------------
+    @Date picker Element
+-------------------------------------------------------------------*/
+.date_wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+.date_wrapper input[type='date'] {
+    padding: 7px 5px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+}
+.date_wrapper .swung_dash {
+    padding: 0 10px;
+    line-height: 38px;
+}
+
+/* form horizontal */
+.form_row .date_wrapper {
+    margin: 0;
+}
+.form_row input[type='date'] {
+    flex: 0 0 45%;
+    max-width: 45%;
+}
+
+/* form horizontal width selectbox */
+.form_row input[type='date'].date_with_time {
+    flex: 1 1 auto;
+}
+
+/*-------------------------------------------------------------------
+    @input type="text" Element
+-------------------------------------------------------------------*/
+input[type='text'] {
+    background-color: #fff;
+    font-weight: 700;
+}
+
+/*-------------------------------------------------------------------
+    @Button Element
+-------------------------------------------------------------------*/
+.btn_wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+.btn {
+    display: inline-block;
+    padding: 7px 30px;
+    border-radius: 7px;
+    border: 0;
+    outline: 0;
+    vertical-align: middle;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn_primary {
+    background-color: #007aff;
+}
+.btn_secondary {
+    background-color: #8e8e93;
+}
+
+.btn_wrapper .btn:not(:last-child) {
+    margin: 0 10px 0 0;
+}
+
+/*-------------------------------------------------------------------
+    @tab layout
+-------------------------------------------------------------------*/
+.tab_wrapper > input[type='radio'] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+.tab_wrapper > label {
+    display: inline-block;
+    margin: 0 0 -1px 0;
+    padding: 17px 40px;
+    border: 1px solid #e5e5e5;
+    border-bottom: 0;
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.tab_panels {
+    border-top: 0;
+    border-top-left-radius: 0;
+}
+.tab_panel {
+    border: 1px solid #e5e5e5;
+    border-top-right-radius: 10px;
+}
+
+/* tab_panel_header */
+.tab_panel_header {
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.05);
+}
+.tab_header_title {
+    margin: 0 20px 0 0;
+    font-weight: 500;
+}
+.tab_panel_header .btn {
+    margin: 0 0 0 10px;
+}
+
+.tab_panel_header_single {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* tab_panel_body */
+.tab_panel_body {
+    padding: 20px;
+}
+.tab_panel_body_top {
+    margin: 0 0 20px 0;
+}
+.tab_panel_body_top.col_3 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+.tab_panel_body_top.col_3 > div.graph_wrapper {
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+.tab_panel_body_top.col_3 > div.table_wrapper {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+.tab_panel_body_top .select_box_wrapper {
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+.tab_panel_body_bottom .btn_wrapper {
+    margin: 0 0 10px 0;
+}
+
+.tab_panel_body_top_inner {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 38px;
+}
+.tab_panel_body_top_inner .btn_wrapper {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/* tab hover, focus, active */
+.tab_wrapper > label:hover,
+.tab_wrapper > input:focus + label,
+.tab_wrapper > input:checked + label {
+    background: #f2f2f2;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.95);
+}
+
+/* tab panel show,hide */
+.tab_wrapper .tab_panel {
+    display: none;
+}
+.tab_wrapper > input:first-of-type:checked ~ .tab_panels > .tab_panel:first-child,
+.tab_wrapper > input:nth-of-type(2):checked ~ .tab_panels > .tab_panel:nth-child(2) {
+    display: block;
+}
+
+/*-------------------------------------------------------------------
+    @tab radio btn
+-------------------------------------------------------------------*/
+.tab_panel_radio_wrapper {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3px;
+    background-color: #e3e3e9;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+.tab_panel_radio_wrapper input[type='radio'] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+.tab_panel_radio_wrapper label {
+    display: block;
+    padding: 7px 32px;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.1s ease-in-out;
+}
+
+/* 기간별, 일별 hover,focus */
+.tab_panel_radio_wrapper input:not(:checked) + label:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
+.tab_panel_radio_wrapper input:checked + label {
+    font-weight: 500;
+    background-color: #fff;
+    box-shadow: 0px 2px 11.52px 0.48px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+/*-------------------------------------------------------------------
+    @Custom radio btn
+-------------------------------------------------------------------*/
+.radio_btn {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+.radio_btn + .form_label {
+    padding-left: 30px;
+    margin: 0 10px 0 0;
+    position: relative;
+}
+.radio_btn:checked + .form_label:before,
+.radio_btn:checked + .form_label:after {
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.radio_btn + .form_label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.radio_btn:checked + .form_label:before {
+    border-color: #007aff;
+}
+
+.radio_btn + .form_label:after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.radio_btn:checked + .form_label:after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #007aff;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*-------------------------------------------------------------------
+    @Pagination
+-------------------------------------------------------------------*/
+.pagination_wrapper .page-link {
+    color: rgba(0, 0, 0, 0.7);
+}
